@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+{#<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"/>#}
+
+<h1>Volumes list</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if volumes_list %}
+    <table border="1">
+        <thead>
+        <tr>
+            <th>User Label</th>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Secure</th>
+            <th>Sector size</th>
+            <th>Restore points</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        {% for volume in volumes_list %}
+            <tr>
+                <td>{# <a href="{% url 'volumes:detail' volume.name %}"> #} {{ volume.user_label }}{# </a> #}</td>
+                <td>{{ volume.name }}</td>
+                <td>{{ volume.capacity }}</td>
+                <td>{{ volume.secure }}</td>
+                <td>{{ volume.sector_size }}</td>
+                <td>
+                    <table>
+                        {% for point in volume.restore_points %}
+                            <tr><td>{{ point }}</td></tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <script src={% static 'fod_volumes/js/jquery-2.0.3.min.js' %}></script>
+    <script src={% static 'fod_volumes/js/volume_list.js' %}></script>
+    <input hidden="hidden" id="task_id" value={{ task_id }}>
+
+
+    <div style="display:table-cell; vertical-align:middle; text-align:center"><img
+            src={% static 'fod_volumes/images/spinner.gif' %}></div>
+{% endif %}

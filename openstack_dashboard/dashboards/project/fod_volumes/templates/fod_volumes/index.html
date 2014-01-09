@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Fod volumes" %}{% endblock %}
+{% load staticfiles %}
+
+{% block page_header %}
+  {% include "horizon/common/_page_header.html" with title=_("Fod volumes") %}
+{% endblock page_header %}
+<script src={% static 'project/fod_volumes/js/jquery-2.0.3.min.js' %}></script>
+<script src={% static 'project/fod_volumes/js/volume_list.js' %}></script>
+
+{% block main %}
+  {{ table.render }}
+{% endblock %}
