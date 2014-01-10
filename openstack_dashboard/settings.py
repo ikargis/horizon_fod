@@ -160,6 +160,7 @@ INSTALLED_APPS = [
     'openstack_dashboard.dashboards.settings',
     'openstack_auth',
     'openstack_dashboard.dashboards.router',
+    'openstack_dashboard.dashboards.project.fod_volumes'
 ]
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
